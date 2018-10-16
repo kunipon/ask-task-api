@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+  social:
+    facebook:
+      app-id: ${facebook.app-id}
+      app-secret: ${facebook.app-secret}
+    twitter:
+      app-id: ${twitter.app-id}
+      app-secret: ${twitter.app-secret}
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.MySQLDialect
+  session:
+    store-type: redis
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false

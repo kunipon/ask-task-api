@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.99.100:3306/test?useSSL=false&requireSSL=false
+    username: test-user
+    password: test-password
+    initialize: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  redis:
+    host: 192.168.99.100
+    port: 6379
+security:
+  oauth2:
+    resource:
+      filter-order: 3

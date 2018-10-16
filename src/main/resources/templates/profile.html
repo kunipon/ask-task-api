@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  lang="ja">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	
+	<title>social login demo</title>
+	
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" />
+	<link rel="stylesheet" th:href="@{/webjars/metisMenu/1.1.3-1/metisMenu.min.css}" />
+	<link rel="stylesheet" th:href="@{/webjars/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.min.css}" />
+	<link rel="stylesheet" th:href="@{/webjars/font-awesome/4.6.3/css/font-awesome.min.css}" />
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="login-panel panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Current connection.</h3>
+					</div>
+					<div class="panel-body">
+						<ul class="chat">
+							<li class="left clearfix"  th:if="${not #lists.isEmpty(connections)}" th:object="${connections[0]}">
+								<span class="chat-img pull-left">
+									<img th:src="*{imageUrl}" src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+								</span>
+								<div class="chat-body clearfix">
+									<div class="header">
+										<strong class="primary-font">Sign-in provider</strong>
+									</div>
+									<p th:text="${providerId}">
+										Sign-in provider.
+									</p>
+									<div class="header">
+										<strong class="primary-font">display name</strong>
+									</div>
+									<p th:text="*{displayName}">
+										display name.
+									</p>
+								</div>
+							</li>
+						</ul>
+						<h4>Connect other account.</h4>
+						<form role="form" th:action="@{/connect/facebook}" method="POST">
+							<button type="submit" class="btn btn-block btn-social btn-facebook">
+								<i class="fa fa-facebook"></i> Connect to facebook
+							</button>
+						</form>
+						<form role="form" th:action="@{/connect/twitter}" method="POST">
+							<button type="submit" class="btn btn-block btn-social btn-twitter">
+								<i class="fa fa-twitter"></i> Connect to twitter
+							</button>
+						</form>
+						<h4>Disconnect account.</h4>
+						<form role="form" th:action="@{/connect/facebook}" method="POST">
+							<input name="_method" type="hidden" value="DELETE" />
+							<button type="submit" class="btn btn-block btn-social btn-facebook">
+								<i class="fa fa-facebook"></i> Disconnect facebook
+							</button>
+						</form>
+						<form role="form" th:action="@{/connect/twitter}" method="POST">
+							<input name="_method" type="hidden" value="DELETE" />
+							<button type="submit" class="btn btn-block btn-social btn-twitter">
+								<i class="fa fa-twitter"></i> Disconnect twitter
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" th:src="@{/webjars/metisMenu/1.1.3-1/metisMenu.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/webjars/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.js}" ></script>
+</body>
+</html>

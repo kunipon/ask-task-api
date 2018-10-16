@@ -1,0 +1,10 @@
+FROM openjdk:8-jdk-alpine
+RUN apk --update add tzdata && \
+    rm -rf /var/cache/apk/*
+ENV TZ Asia/Tokyo
+VOLUME /tmp
+EXPOSE 5000
+ADD spring-social-demo.jar app.jar
+RUN sh -c 'touch /app.jar'
+ENV JAVA_OPTS=""
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
